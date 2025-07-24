@@ -1,89 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FitTrack 减脂营养追踪系统</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; text-align: center; }
-    header { background-color: #0052cc; color: white; padding: 20px 0; }
-    nav a { margin: 0 15px; color: white; text-decoration: none; font-weight: bold; }
-    .container { padding: 30px; }
-    .qr { width: 150px; margin-top: 20px; }
-    .lang-toggle { margin-top: 10px; }
-    #date { margin-top: 10px; color: #666; font-size: 14px; }
-    .calculator { margin: 40px auto; max-width: 400px; text-align: left; }
-    input[type="number"] { width: 80%; padding: 6px; margin-bottom: 10px; }
-    .result { font-weight: bold; }
-  </style>
-  <script>
-    if (window.innerWidth < 768) window.location.href = "./mobile.html";
-
-    function switchLang(lang) {
-      if (lang === 'en') {
-        document.getElementById("title").innerText = "FitTrack Nutrition Tracking System";
-        document.getElementById("desc").innerText = "Track your daily meals, weight, and generate reports through image recognition.";
-        document.getElementById("scan").innerText = "Scan the QR code to try:";
-        document.getElementById("bmiTitle").innerText = "BMI / BMR Calculator";
-        document.getElementById("submitBtn").value = "Calculate";
-      } else { location.reload(); }
-    }
-
-    function showDate() {
-      const now = new Date();
-      document.getElementById("date").innerText = `当前日期：${now.toLocaleDateString()}`;
-    }
-
-    function calculateMetrics() {
-      const weight = parseFloat(document.getElementById("weight").value);
-      const height = parseFloat(document.getElementById("height").value) / 100;
-      const age = parseInt(document.getElementById("age").value);
-      const gender = document.getElementById("gender").value;
-      if (isNaN(weight) || isNaN(height) || isNaN(age)) { alert("请输入完整信息"); return; }
-      const bmi = (weight / (height * height)).toFixed(2);
-      const bmr = gender === "male" ? (66 + 13.7 * weight + 5 * height * 100 - 6.8 * age).toFixed(0)
-                                    : (655 + 9.6 * weight + 1.8 * height * 100 - 4.7 * age).toFixed(0);
-      document.getElementById("bmiResult").innerText = `BMI: ${bmi}，BMR: ${bmr} 卡路里/天`;
-    }
-
-    window.onload = showDate;
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack 减脂营养追踪系统</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
+        header { background-color: #0052cc; color: white; padding: 20px 10px; }
+        nav a { margin: 0 10px; text-decoration: none; color: #fff; font-weight: bold; }
+        .lang-switcher button { margin: 0 5px; }
+        .container { padding: 20px; }
+        .form-section { margin-top: 30px; }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="logo" width="80" />
-    <h1 id="title">FitTrack 减脂营养追踪系统</h1>
-    <nav>
-      <a href="index.html">首页 Home</a>
-      <a href="guide.html">使用说明</a>
-      <a href="examples.html">示例</a>
-      <a href="template.html">模板下载</a>
-      <a href="feedback.html">常见问题</a>
-    </nav>
-    <div class="lang-toggle">
-      <button onclick="switchLang('zh')">中文</button>
-      <button onclick="switchLang('en')">English</button>
+    <header>
+        <img src="logo.png" alt="logo" style="width: 60px;">
+        <h1 id="title">FitTrack 减脂营养追踪系统</h1>
+        <nav>
+            <a href="#" id="nav-home">首页 Home</a>
+            <a href="#" id="nav-instructions">使用说明</a>
+            <a href="#" id="nav-example">示例</a>
+            <a href="#" id="nav-download">模板下载</a>
+            <a href="#" id="nav-faq">常见问题</a>
+        </nav>
+        <div class="lang-switcher">
+            <button onclick="setLang('zh')">中文</button>
+            <button onclick="setLang('en')">English</button>
+            <button onclick="setLang('th')">ภาษาไทย</button>
+        </div>
+        <p id="date"></p>
+    </header>
+    <div class="container">
+        <p id="desc">通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。</p>
+        <p id="qr-instr">扫描二维码体验：</p>
+        <img src="qrcode.png" alt="二维码" style="width: 150px;">
+
+        <div class="form-section">
+            <h3 id="bmi-title">BMI / BMR 计算器</h3>
+            <form onsubmit="calculateBMI(event)">
+                <label for="weight" id="label-weight">体重（公斤）</label><br>
+                <input type="number" id="weight" required><br>
+                <label for="height" id="label-height">身高（厘米）</label><br>
+                <input type="number" id="height" required><br>
+                <label for="age" id="label-age">年龄</label><br>
+                <input type="number" id="age" required><br>
+                <label for="gender" id="label-gender">性别</label><br>
+                <select id="gender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select><br><br>
+                <button type="submit" id="btn-calc">计算</button>
+            </form>
+            <p id="result"></p>
+        </div>
     </div>
-    <div id="date"></div>
-  </header>
-  <div class="container">
-    <p id="desc">通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。</p>
-    <p id="scan">扫描二维码体验：</p>
-    <img src="qr.png" alt="二维码" class="qr" />
-    <div class="calculator">
-      <h3 id="bmiTitle">BMI / BMR 计算器</h3>
-      <label>体重（公斤）<input type="number" id="weight" /></label><br />
-      <label>身高（厘米）<input type="number" id="height" /></label><br />
-      <label>年龄<input type="number" id="age" /></label><br />
-      <label>性别
-        <select id="gender">
-          <option value="male">男</option>
-          <option value="female">女</option>
-        </select>
-      </label><br />
-      <input type="button" id="submitBtn" value="计算" onclick="calculateMetrics()" />
-      <p class="result" id="bmiResult"></p>
-    </div>
-  </div>
+    <script src="lang.js"></script>
 </body>
 </html>
