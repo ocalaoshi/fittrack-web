@@ -1,60 +1,146 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitTrack 减脂营养追踪系统</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
-        header { background-color: #0052cc; color: white; padding: 20px 10px; }
-        nav a { margin: 0 10px; text-decoration: none; color: #fff; font-weight: bold; }
-        .lang-switcher button { margin: 0 5px; }
-        .container { padding: 20px; }
-        .form-section { margin-top: 30px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitTrack 减脂营养追踪系统</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
+    header { background-color: #0056b3; color: white; padding: 20px; }
+    nav a { margin: 0 10px; text-decoration: none; color: #fff; font-weight: bold; }
+    .container { padding: 20px; }
+    img { max-width: 200px; margin: 20px auto; }
+    footer { margin-top: 40px; font-size: 0.9em; color: #888; }
+    #languageSwitcher { margin-top: 10px; }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="logo" style="width: 60px;">
-        <h1 id="title">FitTrack 减脂营养追踪系统</h1>
-        <nav>
-            <a href="#" id="nav-home">首页 Home</a>
-            <a href="#" id="nav-instructions">使用说明</a>
-            <a href="#" id="nav-example">示例</a>
-            <a href="#" id="nav-download">模板下载</a>
-            <a href="#" id="nav-faq">常见问题</a>
-        </nav>
-        <div class="lang-switcher">
-            <button onclick="setLang('zh')">中文</button>
-            <button onclick="setLang('en')">English</button>
-            <button onclick="setLang('th')">ภาษาไทย</button>
-        </div>
-        <p id="date"></p>
-    </header>
-    <div class="container">
-        <p id="desc">通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。</p>
-        <p id="qr-instr">扫描二维码体验：</p>
-        <img src="qr.png" alt="二维码" style="width: 150px;">
-
-        <div class="form-section">
-            <h3 id="bmi-title">BMI / BMR 计算器</h3>
-            <form onsubmit="calculateBMI(event)">
-                <label for="weight" id="label-weight">体重（公斤）</label><br>
-                <input type="number" id="weight" required><br>
-                <label for="height" id="label-height">身高（厘米）</label><br>
-                <input type="number" id="height" required><br>
-                <label for="age" id="label-age">年龄</label><br>
-                <input type="number" id="age" required><br>
-                <label for="gender" id="label-gender">性别</label><br>
-                <select id="gender">
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                </select><br><br>
-                <button type="submit" id="btn-calc">计算</button>
-            </form>
-            <p id="result"></p>
-        </div>
+  <header>
+    <img src="logo.png" alt="logo" style="display:block; margin:auto; width:80px;" />
+    <h1 data-i18n="title">FitTrack 减脂营养追踪系统</h1>
+    <nav>
+      <a href="index.html" data-i18n="home">首页 Home</a>
+      <a href="docs/index.html" data-i18n="guide">使用说明</a>
+      <a href="examples/index.html" data-i18n="examples">示例</a>
+      <a href="download/index.html" data-i18n="download">模版下载</a>
+      <a href="faq/index.html" data-i18n="faq">常见问题</a>
+    </nav>
+    <div id="languageSwitcher">
+      <button onclick="switchLanguage('zh')">中文</button>
+      <button onclick="switchLanguage('en')">English</button>
+      <button onclick="switchLanguage('th')">ไทย</button>
     </div>
-    <script src="lang.js"></script>
+    <div id="currentDate"></div>
+  </header>
+
+  <div class="container">
+    <p data-i18n="description">通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。</p>
+    <p data-i18n="scan">扫描二维码体验：</p>
+    <img src="qr.png" alt="二维码" />
+
+    <h3 data-i18n="bmiTitle">BMI / BMR 计算器</h3>
+    <div style="max-width: 300px; margin: auto;">
+      <label data-i18n="weight">体重（公斤）</label><br />
+      <input type="number" id="weight" /><br />
+      <label data-i18n="height">身高（厘米）</label><br />
+      <input type="number" id="height" /><br />
+      <label data-i18n="age">年龄</label><br />
+      <input type="number" id="age" /><br />
+      <label data-i18n="gender">性别</label><br />
+      <select id="gender">
+        <option value="male">男</option>
+        <option value="female">女</option>
+      </select><br /><br />
+      <button onclick="calculate()" data-i18n="calculate">计算</button>
+      <p id="result"></p>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 FitTrack</footer>
+
+  <script>
+    const translations = {
+      zh: {
+        title: "FitTrack 减脂营养追踪系统",
+        home: "首页 Home",
+        guide: "使用说明",
+        examples: "示例",
+        download: "模版下载",
+        faq: "常见问题",
+        description: "通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。",
+        scan: "扫描二维码体验：",
+        bmiTitle: "BMI / BMR 计算器",
+        weight: "体重（公斤）",
+        height: "身高（厘米）",
+        age: "年龄",
+        gender: "性别",
+        male: "男",
+        female: "女",
+        calculate: "计算"
+      },
+      en: {
+        title: "FitTrack Nutrition Tracking System",
+        home: "Home",
+        guide: "Guide",
+        examples: "Examples",
+        download: "Download",
+        faq: "FAQ",
+        description: "Track your daily meals, weight, and generate reports through image recognition.",
+        scan: "Scan the QR code to try:",
+        bmiTitle: "BMI / BMR Calculator",
+        weight: "Weight (kg)",
+        height: "Height (cm)",
+        age: "Age",
+        gender: "Gender",
+        male: "Male",
+        female: "Female",
+        calculate: "Calculate"
+      },
+      th: {
+        title: "FitTrack ระบบติดตามโภชนาการ",
+        home: "หน้าหลัก",
+        guide: "วิธีใช้",
+        examples: "ตัวอย่าง",
+        download: "ดาวน์โหลด",
+        faq: "คำถามที่พบบ่อย",
+        description: "ติดตามมื้ออาหาร น้ำหนัก และสร้างรายงานด้วยการรู้จำภาพ",
+        scan: "สแกน QR Code เพื่อทดลอง:",
+        bmiTitle: "เครื่องคำนวณ BMI / BMR",
+        weight: "น้ำหนัก (กก.)",
+        height: "ส่วนสูง (ซม.)",
+        age: "อายุ",
+        gender: "เพศ",
+        male: "ชาย",
+        female: "หญิง",
+        calculate: "คำนวณ"
+      }
+    };
+
+    let currentLang = "zh";
+    function switchLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      const gender = document.getElementById("gender");
+      gender.options[0].text = translations[lang]["male"];
+      gender.options[1].text = translations[lang]["female"];
+    }
+
+    function calculate() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+      const age = parseInt(document.getElementById("age").value);
+      const gender = document.getElementById("gender").value;
+      if (isNaN(weight) || isNaN(height) || isNaN(age)) return;
+      const bmi = weight / ((height / 100) ** 2);
+      const bmr = gender === "male" ? 10 * weight + 6.25 * height - 5 * age + 5
+                                    : 10 * weight + 6.25 * height - 5 * age - 161;
+      document.getElementById("result").innerText = `BMI: ${bmi.toFixed(2)}, BMR: ${bmr.toFixed(2)}`;
+    }
+
+    document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
+  </script>
 </body>
 </html>
