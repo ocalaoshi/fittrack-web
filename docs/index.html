@@ -1,53 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>FitTrack 减脂助手网页版入口</title>
-    <link rel="icon" href="fittrack_logo.png" type="image/png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #1a237e;
-        }
-        p {
-            font-size: 16px;
-        }
-        .button {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #1976d2;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        img {
-            margin-top: 20px;
-            max-width: 150px;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FitTrack - 健康追踪助手</title>
+  <link rel="icon" href="fittrack_logo.png" type="image/png"/>
+  <style>
+    body {{ font-family: Arial, sans-serif; background:#f0f2f5; color:#333; text-align:center; padding:40px 20px; }}
+    h1 {{ color:#1a237e; }}
+    p {{ font-size:16px; line-height:1.5; }}
+    nav {{ margin-top:20px; }}
+    nav a {{ margin: 0 10px; color:#1976d2; text-decoration:none; font-weight:bold; }}
+    nav a:hover {{ text-decoration:underline; }}
+    .logo {{ width: 120px; margin: 20px auto; }}
+    .qrcode {{ width: 180px; margin-top: 10px; }}
+  </style>
 </head>
 <body>
-    <img src="fittrack_logo.png" alt="Logo">
-    <h1>FitTrack 减脂助手网页版入口</h1>
-
-    <p><strong>简体中文：</strong><br>
-    FitTrack 是一个基于 ChatGPT Agent 的减脂管理系统，支持图片识别、热量分析、体重追踪、表格生成与报告输出。</p>
-
-    <p><strong>English:</strong><br>
-    FitTrack is a fat-loss management tool powered by ChatGPT Agent. It supports food image recognition, calorie analysis, weight tracking, spreadsheet automation, and report generation.</p>
-
-    <img src="fittrack_qr.png" alt="QR Code">
-
-    <div>
-        <a class="button" href="guide.html" target="_blank">📘 查看使用说明 | Open User Guide</a>
-    </div>
+  <img src="fittrack_logo.png" alt="FitTrack Logo" class="logo"/>
+  <h1>FitTrack 减脂营养追踪系统</h1>
+  <p>通过图片识别与三餐记录，帮助你追踪每日营养、体重变化，并生成个性化建议。</p>
+  <nav>
+    <a href="index.html">首页 Home</a>
+    <a href="guide.html">使用说明</a>
+    <a href="demo.html">示例</a>
+    <a href="templates.html">模板下载</a>
+    <a href="faq.html">常见问题</a>
+  </nav>
+  <p>扫描二维码体验：</p>
+  <img src="fittrack_qr.png" alt="QR Code" class="qrcode"/>
 </body>
 </html>
