@@ -1,18 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>反馈表单</title>
 </head>
 <body>
-  <h2>反馈建议</h2>
-  <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
-    姓名: <input type="text" name="name"><br><br>
-    邮箱: <input type="email" name="email"><br><br>
-    留言: <br>
-    <textarea name="message" rows="5" cols="40"></textarea><br><br>
-    <input type="submit" value="提交">
-    <input type="reset" value="重置">
+  <h2>请留下您的建议或问题</h2>
+  <form action="https://script.google.com/macros/s/AKfycbxP7sMXjSqf8B0As76A139CbV56xJQkikQu6BgB8vhXCzAwaZuqjIjKl2kzaWVRwg-QGw/exec" method="POST">
+    <label for="name">姓名:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">邮箱:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="message">反馈内容:</label><br>
+    <textarea id="message" name="message" rows="5" cols="30" required></textarea><br><br>
+    <button type="submit">提交</button>
   </form>
 </body>
 </html>
