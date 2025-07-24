@@ -1,33 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>FitTrack - 健康追踪助手</title>
-  <link rel="icon" href="fittrack_logo.png" type="image/png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitTrack 减脂营养追踪系统</title>
   <style>
-    body {{ font-family: Arial, sans-serif; background:#f0f2f5; color:#333; text-align:center; padding:40px 20px; }}
-    h1 {{ color:#1a237e; }}
-    p {{ font-size:16px; line-height:1.5; }}
-    nav {{ margin-top:20px; }}
-    nav a {{ margin: 0 10px; color:#1976d2; text-decoration:none; font-weight:bold; }}
-    nav a:hover {{ text-decoration:underline; }}
-    .logo {{ width: 120px; margin: 20px auto; }}
-    .qrcode {{ width: 180px; margin-top: 10px; }}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+    }
+    header {
+      background-color: #004aad;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 0.8em;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #004aad;
+      font-weight: bold;
+    }
+    .container {
+      text-align: center;
+      margin: 2em;
+    }
+    img.logo {
+      width: 100px;
+    }
+    img.qr {
+      width: 200px;
+      margin-top: 2em;
+    }
   </style>
 </head>
 <body>
-  <img src="fittrack_logo.png" alt="FitTrack Logo" class="logo"/>
-  <h1>FitTrack 减脂营养追踪系统</h1>
-  <p>通过图片识别与三餐记录，帮助你追踪每日营养、体重变化，并生成个性化建议。</p>
+  <header>
+    <img src="logo.png" alt="logo" class="logo" />
+    <h1>FitTrack 减脂营养追踪系统</h1>
+  </header>
+
   <nav>
     <a href="index.html">首页 Home</a>
     <a href="guide.html">使用说明</a>
     <a href="demo.html">示例</a>
-    <a href="templates.html">模板下载</a>
+    <a href="template.html">模板下载</a>
     <a href="faq.html">常见问题</a>
   </nav>
-  <p>扫描二维码体验：</p>
-  <img src="fittrack_qr.png" alt="QR Code" class="qrcode"/>
+
+  <div class="container">
+    <p>通过图片识别与三餐记录，帮助你追踪每日膳食、体重变化，并生成个性化建议。</p>
+    <p>扫描二维码体验：</p>
+    <img src="qr.png" alt="二维码" class="qr"/>
+  </div>
 </body>
 </html>
