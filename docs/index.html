@@ -1,62 +1,55 @@
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>FitTrack 减脂助手</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitTrack 减脂助手网页版入口</title>
+  <link rel="icon" type="image/png" href="fittrack_logo.png">
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f5f8fc;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f5f7;
       text-align: center;
-      padding: 40px;
+      padding: 50px;
+      color: #333;
     }
     h1 {
-      color: #084B8A;
+      color: #004d99;
     }
-    .logo {
-      width: 120px;
+    img.logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
     }
-    .qr {
-      width: 160px;
-      margin-top: 20px;
+    .qr-code {
+      margin: 30px 0;
     }
-    .btn {
+    .guide-button {
       display: inline-block;
-      margin-top: 30px;
       padding: 12px 24px;
-      background-color: #007ACC;
+      background-color: #007BFF;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-size: 16px;
     }
-    .text-block {
-      margin-top: 20px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 16px;
-      line-height: 1.6;
+    .guide-button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <img src="fittrack_logo.png" alt="logo" class="logo" />
+  <img src="fittrack_logo.png" class="logo" alt="Logo" />
   <h1>FitTrack 减脂助手网页版入口</h1>
+  <p><strong>简体中文：</strong><br>
+  FitTrack 是一个基于 ChatGPT Agent 的减脂管理系统，支持图片识别、热量分析、体重追踪、表格生成与报告输出。</p>
+  <p><strong>English:</strong><br>
+  FitTrack is a fat-loss management tool powered by ChatGPT Agent. It supports food image recognition, calorie analysis, weight tracking, spreadsheet automation, and report generation.</p>
 
-  <div class="text-block">
-    <p><strong>简体中文：</strong><br>
-    FitTrack 是一个基于 ChatGPT Agent 的减脂管理系统，支持图片识别、热量分析、体重追踪、表格生成与报告输出。</p>
-
-    <p><strong>English:</strong><br>
-    FitTrack is a fat-loss management tool powered by ChatGPT Agent. It supports food image recognition, calorie analysis, weight tracking, spreadsheet automation, and report generation.</p>
+  <div class="qr-code">
+    <img src="fittrack_qr.png" alt="QR Code" width="200" />
   </div>
-
-  <img src="fittrack_qr.png" alt="QR Code" class="qr" />
-  <div>
-    <a href="https://ocalaoshi.github.io/fittrack-web/docs" class="btn" target="_blank">📘 查看使用说明 | Open User Guide</a>
-  </div>
+  <a href="docs/fittrack_user_guide.html" class="guide-button">📘 查看使用说明 | Open User Guide</a>
 </body>
 </html>
